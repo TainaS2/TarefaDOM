@@ -1,5 +1,7 @@
 const notas = [];
 
+let salvo = false;
+
 const input = document.getElementById('inp');
 const btnA = document.getElementById('btn-a');
 const btnC = document.getElementById('btn-c');
@@ -11,6 +13,10 @@ function notasArea(){
 }
 
 btnA.onclick = function() {
+    if(!salvo) {
+        pronto.innerHTML =`Média:`;
+        salvo = true;
+    }
     const valor = Number(input.value.replace(',', '.'));
     if(isNaN(valor) || (valor < 0 || valor > 10)){
         alert('A nota digitada é inválida!,por favor, insira uma nota válida.');
@@ -27,6 +33,7 @@ btnA.onclick = function() {
 }
 
 btnC.onclick = function() {
+    salvo= false;
     if(notas.length === 0) {
         alert('Não há notas para calcular a média.');
         return;
